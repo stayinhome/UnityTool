@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement style="flex-grow: 1; flex-direction: row; height: auto;">
+        <ui:Button text="-" parse-escape-sequences="true" display-tooltip-when-elided="true" name="btnRemove" style="width: 30px; max-width: 30px; min-width: 30px;" />
+        <ui:EnumField type="ProtoFiledModifierType, Assembly-CSharp-Editor" name="enumField" style="width: 152px;" />
+        <ui:TextField picking-mode="Ignore" name="textType" style="width: 242px;" />
+        <ui:TextField picking-mode="Ignore" name="textName" style="width: 206px;" />
+        <ui:IntegerField value="0" name="textNumber" />
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement style="flex-grow: 1; flex-direction: row; width: 936px;">
+        <ui:Button text="-" parse-escape-sequences="true" display-tooltip-when-elided="true" name="btnRemove" style="width: 30px;" />
+        <ui:TextField picking-mode="Ignore" label="Name" value="filler text" name="TextName" style="width: 324px;" />
+        <ui:TextField picking-mode="Ignore" label="Input" value="filler text" name="TextInput" style="width: 326px;" />
+        <ui:TextField picking-mode="Ignore" label="Return" value="filler text" name="TextReturn" style="width: 276px;" />
+    </ui:VisualElement>
+</ui:UXML>

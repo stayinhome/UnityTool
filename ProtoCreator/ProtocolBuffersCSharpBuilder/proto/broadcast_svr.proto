@@ -1,0 +1,149 @@
+syntax = "proto2";
+
+package proto.broadcast_svr;
+
+
+message GetTempIDRequest {
+}
+
+message GetTempIDResponse {
+  required int32 result = 1;
+  required TouristIdentity tourist_id = 2;
+}
+
+message LeaveRoomRequest {
+  required game.RoomKey room_key = 1;
+}
+
+message LeaveRoomResponse {
+  required int32 result = 1;
+  optional game.RoomKey room_key = 2;
+}
+
+message GetRoomInfoRequest {
+  required game.RoomKey room_key = 1;
+}
+
+message GetRoomInfoResponse {
+  required int32 result = 1;
+  optional broadcast.RoomDetailInfo room_detail = 2;
+}
+
+message OperationNotify {
+  optional broadcast.Operation opt = 1;
+}
+
+message OperationResponse {
+  required int32 result = 1;
+}
+
+message AllOperationNotify {
+  required game.RoomKey room_key = 1;
+  repeated broadcast.Operation opt = 2;
+}
+
+message RoomSeqInfo {
+  optional game.RoomKey room_key = 1;
+  optional int32 seq = 2;
+}
+
+message HeartBeatRequest {
+  optional int32 seq = 1;
+  repeated game.RoomKey entered_room_key = 2;
+}
+
+message HeartBeatResponse {
+  required int32 result = 1;
+  optional int32 seq = 2;
+  repeated RoomSeqInfo room_seq_info = 3;
+}
+
+message GetRoomInfoMultiRequest {
+  repeated game.RoomKey room_keys = 1;
+}
+
+message GetRoomInfoMultiResponse {
+  optional int32 result = 1;
+  repeated broadcast.RoomDetailInfo room_detail = 2;
+}
+
+message GetCachedRoomInfoRequest {
+}
+
+message GetCachedRoomInfoResponse {
+  required int32 result = 1;
+}
+
+message CloseRoomNotify {
+  required game.RoomKey room_key = 1;
+}
+
+message CloseRoomResponse {
+  required int32 result = 1;
+}
+
+message ClearCacheNotify {
+  required game.RoomKey room_key = 1;
+  repeated broadcast.Operation opt_list = 2;
+  optional int32 seq = 3;
+}
+
+message ClearCacheResponse {
+  required int32 result = 1;
+}
+
+message TouristIdentity {
+  optional int64 id = 1;
+}
+
+message SyncAllOperationList {
+  required game.RoomKey room_key = 1;
+  repeated broadcast.Operation opt_list = 2;
+  optional int32 split_packet_num = 3;
+  required bool is_split_over = 4;
+}
+
+message SyncAllOperationListResponse {
+  required int32 result = 1;
+  required game.RoomKey room_key = 2;
+  optional int32 split_packet_num = 3;
+}
+
+message EnvInfoNotify {
+  optional game.RoomKey room_key = 1;
+  optional broadcast.EnvironmentInfo env_info = 2;
+}
+
+message ChangeRoomEnvRequest {
+  optional game.RoomKey room_key = 1;
+  optional broadcast.EnvironmentInfo env_info = 2;
+}
+
+message ChangeRoomEnvResponse {
+  optional int32 result = 1;
+}
+
+service BroadCastSvrRpc {
+  rpc AddOpt(OperationNotify) returns (OperationResponse);
+  rpc ChangeRoomEnv(ChangeRoomEnvRequest) returns (ChangeRoomEnvResponse);
+  rpc CloseRoom(CloseRoomNotify) returns (CloseRoomResponse);
+  rpc ClearCache(ClearCacheNotify) returns (ClearCacheResponse);
+  rpc SyncAllOperationListSplit(SyncAllOperationList) returns (SyncAllOperationListResponse);
+  rpc GetCachedRoomInfo(GetCachedRoomInfoRequest) returns (GetCachedRoomInfoResponse);
+}
+
+enum BroadCastSvrMessageID {
+  ENTER_ROOM = 100;
+  LEAVE_ROOM = 101;
+  GET_ROOM_INFO = 102;
+  OPERATION_NOTIFY = 103;
+  RESET_NOTIFY = 104;
+  CLEAR_CACHE_NOTIFY = 105;
+  CLOSE_NOTIFY = 106;
+  HEART_BEAT = 107;
+  ENTER_ROOM_NO_LOGIN = 108;
+  GET_TEMP_ID = 109;
+  GET_ROOM_INFO_MULTI = 110;
+  ENV_INFO_NOTIFY = 120;
+}
+

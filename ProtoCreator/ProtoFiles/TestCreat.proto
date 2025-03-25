@@ -1,0 +1,18 @@
+syntax = "proto2";
+
+package proto.TestCreat;
+
+message bb {
+}
+
+message cc {
+}
+
+service NewService {
+  rpc aa(bb) returns (cc);
+}
+
+enum NewEnum {
+  Aaa = 0;
+}
+

@@ -1,0 +1,27 @@
+syntax = "proto2";
+
+package proto.mapdata;
+
+message eewtetryty {
+  optional int32 mapID = 1;
+  optional string mapName = 2;
+  optional int32 mapXSize = 3;
+  optional int32 mapYSize = 4;
+  repeated TerrainTileInfo tile_list = 5;
+  repeated TerrainGridInfo grid_list = 6;
+}
+
+message TerrainTileInfo {
+  optional string terrainName = 1;
+}
+
+message TerrainGridInfo {
+  optional TerrainType terrainType = 1;
+}
+
+enum TerrainType {
+  LandRoad = 0;
+  LandWall = 1;
+  WaterRoad = 2;
+}
+

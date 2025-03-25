@@ -1,0 +1,39 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Editor/ProtoCreator/ProtoCreator.uss?fileID=7433441132597879392&amp;guid=bdfb4bb2d13179c4093093cec0aae2b0&amp;type=3#ProtoCreator" />
+    <ui:VisualElement style="flex-grow: 1; flex-direction: row; width: auto;">
+        <ui:VisualElement style="flex-grow: 1; width: 10%;">
+            <ui:VisualElement style="flex-grow: 1; height: 40px; max-height: 40px; min-height: 40px; flex-direction: row; justify-content: flex-start; width: auto;">
+                <ui:TextField picking-mode="Ignore" name="textNewName" style="width: 70%;" />
+                <ui:Button text="Add" parse-escape-sequences="true" display-tooltip-when-elided="true" name="btnAddNew" style="width: 20%; max-width: 50px; min-width: 50px;" />
+            </ui:VisualElement>
+            <ui:TreeView focusable="true" name="treeProto" />
+            <ui:Button text="保存全部改动" parse-escape-sequences="true" display-tooltip-when-elided="true" name="btnSaveAll" style="width: 150px; align-self: auto;" />
+            <ui:Button text="全部生成C#文件" parse-escape-sequences="true" display-tooltip-when-elided="true" name="btnCreatAll" style="width: 150px; align-self: auto;" />
+        </ui:VisualElement>
+        <ui:VisualElement style="flex-grow: 1; width: 70%;">
+            <ui:TextField picking-mode="Ignore" label="Syntax" name="txtSyntax" style="height: 30px;" />
+            <ui:TextField picking-mode="Ignore" label="PackageName" name="txtPackageName" style="height: 28px;" />
+            <ui:Foldout text="ListImport" name="TogImport" style="height: 130px; min-height: 130px; visibility: visible;">
+                <ui:ListView focusable="true" name="ListImport" />
+                <ui:Button text="＋" parse-escape-sequences="true" display-tooltip-when-elided="true" name="BtnImportAdd" style="align-self: flex-end; height: 30px; width: 30px;" />
+            </ui:Foldout>
+            <ui:Foldout text="Messages" name="TogMessages" style="height: 329px;">
+                <ui:ListView focusable="true" name="ListMessages" virtualization-method="DynamicHeight" style="height: 728px; display: flex; visibility: visible; overflow: visible; opacity: 1; width: auto; flex-direction: column;" />
+                <ui:Button text="＋" parse-escape-sequences="true" display-tooltip-when-elided="true" name="BtnMessagesAdd" style="align-self: flex-end; height: 30px; width: 30px;" />
+            </ui:Foldout>
+            <ui:Foldout text="Enums" name="TogEnums" style="height: 268px;">
+                <ui:ListView focusable="true" name="ListEnums" virtualization-method="DynamicHeight" show-bound-collection-size="true" style="height: 100%; display: flex; overflow: visible; width: auto;" />
+                <ui:Button text="＋" parse-escape-sequences="true" display-tooltip-when-elided="true" name="BtnEnumsAdd" style="align-self: flex-end; height: 30px; width: 30px;" />
+            </ui:Foldout>
+            <ui:Foldout text="Services" name="TogServices" style="height: 190px;">
+                <ui:ListView focusable="true" name="ListServices" virtualization-method="DynamicHeight" style="height: 100%; display: flex; overflow: visible; visibility: visible;" />
+                <ui:Button text="＋" parse-escape-sequences="true" display-tooltip-when-elided="true" name="BtnServicesAdd" style="align-self: flex-end; height: 30px; width: 30px;" />
+            </ui:Foldout>
+            <ui:VisualElement style="flex-grow: 1; width: auto; min-height: 30px; height: 30px; max-height: 30px; min-width: auto; align-self: flex-end; flex-direction: row; align-items: stretch;">
+                <ui:Button text="删除" parse-escape-sequences="true" display-tooltip-when-elided="true" name="btnDelete" style="width: 150px; align-self: auto;" />
+                <ui:Button text="保存" parse-escape-sequences="true" display-tooltip-when-elided="true" name="btnSave" style="width: 150px; align-self: auto;" />
+                <ui:Button text="生成" parse-escape-sequences="true" display-tooltip-when-elided="true" name="btnCreat" style="width: 150px; align-self: auto;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
