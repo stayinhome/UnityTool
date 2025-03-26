@@ -578,11 +578,11 @@ public class ProtoCreator : EditorWindow
         {
             if (!CheckProtoDetail(_CurData))
             {
-                EditorUtility.DisplayDialog("ÌáÊ¾", "Éú³ÉÊ§°Ü", "ºÃµÄ");
+                EditorUtility.DisplayDialog("æç¤º", "ç”Ÿæˆå¤±è´¥", "å¥½çš„");
                 return;
             }
             protoParser.GenerateProtoFile(_CurData, _CurDataPath);
-            EditorUtility.DisplayDialog("ÌáÊ¾", "±£´æ³É¹¦£¬Â·¾¶£º" + _CurDataPath, "ºÃµÄ");
+            EditorUtility.DisplayDialog("æç¤º", "ä¿å­˜æˆåŠŸï¼Œè·¯å¾„ï¼š" + _CurDataPath, "å¥½çš„");
 
         }
     }
@@ -600,7 +600,7 @@ public class ProtoCreator : EditorWindow
                 protoParser.GenerateProtoFile(listTreeNodeData[i].protoDetail, listTreeNodeData[i].path);
             }
         }
-        EditorUtility.DisplayDialog("ÌáÊ¾", "±£´æ³É¹¦", "ºÃµÄ");
+        EditorUtility.DisplayDialog("æç¤º", "ä¿å­˜æˆåŠŸ", "å¥½çš„");
 
     }
 
@@ -611,7 +611,7 @@ public class ProtoCreator : EditorWindow
         {
             if(enumDetail.Values.Count == 0)
             {
-                Debug.LogWarning(pd.PackageName + " " + enumDetail.Name + " ×Ö¶Î²»ÄÜÎª¿Õ");
+                Debug.LogWarning(pd.PackageName + " " + enumDetail.Name + " å­—æ®µä¸èƒ½ä¸ºç©º");
                 return false;
 
             }
@@ -709,8 +709,8 @@ public class ProtoCreator : EditorWindow
 
     private void CreatProtoDetail(MouseUpEvent e)
     {
-        CreatC4File(_CurDataPath, _CurDataPath.Replace("ProtoFiles", "GenerateFiles")) ;
-        EditorUtility.DisplayDialog("ÌáÊ¾", "Éú³É³É¹¦", "ºÃµÄ");
+        CreatC4File(_CurDataPath, GenerateFilesPath) ;
+        EditorUtility.DisplayDialog("æç¤º", "ç”ŸæˆæˆåŠŸ", "å¥½çš„");
         AssetDatabase.Refresh();
     }
 
@@ -720,11 +720,11 @@ public class ProtoCreator : EditorWindow
         {
             if(treeNodeData.type == 1)
             {
-                CreatC4File(treeNodeData.path, treeNodeData.path.Replace("ProtoFiles", "GenerateFiles"));
+                CreatC4File(treeNodeData.path, GenerateFilesPath);
             }
         }
 
-        EditorUtility.DisplayDialog("ÌáÊ¾", "Éú³É³É¹¦", "ºÃµÄ");
+        EditorUtility.DisplayDialog("æç¤º", "ç”ŸæˆæˆåŠŸ", "å¥½çš„");
         AssetDatabase.Refresh();
 
     }
@@ -741,14 +741,14 @@ public class ProtoCreator : EditorWindow
         string BinOutPath = OutDirectoryPath + "\\" + FileName + ".bin";
         string csOutPath = OutDirectoryPath + "\\" + FileName + ".cs";
 
-        // ÅäÖÃ½ø³ÌÆô¶¯ĞÅÏ¢
+        // é…ç½®è¿›ç¨‹å¯åŠ¨ä¿¡æ¯
         System.Diagnostics.ProcessStartInfo psi = new System.Diagnostics.ProcessStartInfo
         {
-            FileName = Application.dataPath + protocPath,          // Ö¸¶¨ÃüÁîĞĞ³ÌĞò
-            Arguments = string.Format("--proto_path={0} --descriptor_set_out={1}  {2}", protoFilesPath, BinOutPath, OriginPath),     // Ö´ĞĞipconfigÃüÁîºóÍË³ö
-            RedirectStandardOutput = true, // ÖØ¶¨Ïò±ê×¼Êä³ö
-            UseShellExecute = false,       // ½ûÓÃShellÖ´ĞĞÒÔÖØ¶¨ÏòÁ÷
-            CreateNoWindow = true          // ²»´´½¨ĞÂ´°¿Ú
+            FileName = Application.dataPath + protocPath,          // æŒ‡å®šå‘½ä»¤è¡Œç¨‹åº
+            Arguments = string.Format("--proto_path={0} --descriptor_set_out={1}  {2}", protoFilesPath, BinOutPath, OriginPath),     // æ‰§è¡Œipconfigå‘½ä»¤åé€€å‡º
+            RedirectStandardOutput = true, // é‡å®šå‘æ ‡å‡†è¾“å‡º
+            UseShellExecute = false,       // ç¦ç”¨Shellæ‰§è¡Œä»¥é‡å®šå‘æµ
+            CreateNoWindow = true          // ä¸åˆ›å»ºæ–°çª—å£
         };
 
         using (System.Diagnostics.Process process = new System.Diagnostics.Process())
@@ -756,12 +756,12 @@ public class ProtoCreator : EditorWindow
             process.StartInfo = psi;
             process.Start();
 
-            // ¶ÁÈ¡Êä³ö
+            // è¯»å–è¾“å‡º
             string output = process.StandardOutput.ReadToEnd();
-            process.WaitForExit(); // µÈ´ı½ø³Ì½áÊø
+            process.WaitForExit(); // ç­‰å¾…è¿›ç¨‹ç»“æŸ
             if (string.IsNullOrEmpty(output))
             {
-                Debug.Log(FileName + ".bin Éú³É³É¹¦");
+                Debug.Log(FileName + ".bin ç”ŸæˆæˆåŠŸ");
 
             }
             else
@@ -773,11 +773,11 @@ public class ProtoCreator : EditorWindow
 
         System.Diagnostics.ProcessStartInfo psi2 = new System.Diagnostics.ProcessStartInfo
         {
-            FileName = Application.dataPath + protocC4Path,          // Ö¸¶¨ÃüÁîĞĞ³ÌĞò
-            Arguments = string.Format("-i:{0} -o:{1} -p:detectMissing", BinOutPath, csOutPath),     // Ö´ĞĞipconfigÃüÁîºóÍË³ö
-            RedirectStandardOutput = true, // ÖØ¶¨Ïò±ê×¼Êä³ö
-            UseShellExecute = false,       // ½ûÓÃShellÖ´ĞĞÒÔÖØ¶¨ÏòÁ÷
-            CreateNoWindow = true          // ²»´´½¨ĞÂ´°¿Ú
+            FileName = Application.dataPath + protocC4Path,          // æŒ‡å®šå‘½ä»¤è¡Œç¨‹åº
+            Arguments = string.Format("-i:{0} -o:{1} -p:detectMissing", BinOutPath, csOutPath),     // æ‰§è¡Œipconfigå‘½ä»¤åé€€å‡º
+            RedirectStandardOutput = true, // é‡å®šå‘æ ‡å‡†è¾“å‡º
+            UseShellExecute = false,       // ç¦ç”¨Shellæ‰§è¡Œä»¥é‡å®šå‘æµ
+            CreateNoWindow = true          // ä¸åˆ›å»ºæ–°çª—å£
         };
 
         using (System.Diagnostics.Process process = new System.Diagnostics.Process())
@@ -785,12 +785,12 @@ public class ProtoCreator : EditorWindow
             process.StartInfo = psi2;
             process.Start();
 
-            // ¶ÁÈ¡Êä³ö
+            // è¯»å–è¾“å‡º
             string output = process.StandardOutput.ReadToEnd();
-            process.WaitForExit(); // µÈ´ı½ø³Ì½áÊø
+            process.WaitForExit(); // ç­‰å¾…è¿›ç¨‹ç»“æŸ
             if (string.IsNullOrEmpty(output))
             {
-                Debug.Log(FileName + ".cs Éú³É³É¹¦");
+                Debug.Log(FileName + ".cs ç”ŸæˆæˆåŠŸ");
 
             }
             else
